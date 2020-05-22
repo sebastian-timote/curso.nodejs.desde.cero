@@ -1,0 +1,5 @@
+hola Bienvenidos al curso de node js de la escuela digital
+suerte!!!
+php se ejecuto en 7 ms
+node sincrono 271 ms
+node asincrono 143 ms
