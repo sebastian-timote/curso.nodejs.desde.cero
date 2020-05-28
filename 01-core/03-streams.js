@@ -8,7 +8,7 @@ streams
     pero muchos recursos nos ofrecen este interfaz
     detras de muchos mecanismos de node.js
         stdin/stdout
-        request de http
+        request de http 
         sockets
         manipulacion de ficheros/imagenes
 

@@ -4,8 +4,7 @@ const http = require('http').createServer(webServer),
 
 function webServer(req, res) {
     res.writeHead(200, {'content-Type':'text/html'});
-    res.end('<h1>hola node.js en la web </h1>');
+    fs.readFile('./assets/index.html',(err, data) => err ? console.log(err.message) : res.end(data));
 }
 
-http.createServer(webServer)
-    .listen(3000, 'localhost', () => console.log('Servidor corriendo en http://localhost:3000/'));
+http.listen(3000, 'localhost', () => console.log('Servidor corriendo en http://localhost:3000/'));

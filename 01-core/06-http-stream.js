@@ -5,7 +5,7 @@ const http = require('http').createServer(webServer),
 
 function webServer(req, res) {
     res.writeHead(200, {'content-Type':'text/html'});
-    index.pipe(res);
+    index.pipe(res);//lo que esta guardado en index lo mande a la respuesta
 }
 
 http.listen(3000, 'localhost', () => console.log('Servidor corriendo en http://localhost:3000/'));

@@ -13,7 +13,7 @@ buffers
 
 */
 
-let buf = new Buffer.alloc(26);
+let buf = new Buffer.alloc(26);//longitud de buffer
 console.log(
     buf,
     buf.length,
@@ -24,4 +24,4 @@ for (let index = 0; index < buf.length; index++) {
     buf[index] = index + 97;
     
 }
-console.log( buf.toString());
+console.log( buf.toString());//tostring()-> lo combierte a letras
