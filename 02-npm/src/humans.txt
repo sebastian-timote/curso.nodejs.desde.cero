@@ -1,0 +1,19 @@
+/* Sebastian Timote -Aprendiendo nodejs-
+*/
+
+/*TEAM*/
+    Design and Programming : Sebastian Timote
+    contact: stimotev11@gmail.com
+    instagram: @s.timo.v 
+    From: cali, colombia
+
+/*SITE*/
+    last update:
+    Languajes: español/English
+    Standars: HTML5, CSS3, Javascript, ES6, Node.js, NPM
+    Components: animate.css, font-awesome, jquery, owl.carousel, responsimple,
+    wowjs, @babel/core, @babel/preset-env, @babel/register, babel-register, browser-sync,
+    gulp, gulp-autoprefixer, gulp-babel, gulp-clean-css, gulp-concat, gulp-htmlmin,
+    gulp-imagemin, gulp-pug, gulp-sass, gulp-svgmin, gulp-uglify, gulp-uncss, gulp-useref,
+    gulp-webp, imagemin-pngquant, onchange, parallelshell, pug.
+    Software: visual studio code, Chrome, windows 10
