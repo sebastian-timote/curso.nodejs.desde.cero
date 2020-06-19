@@ -52,8 +52,13 @@ const gulp = require('gulp'),
                 files : files//le mandamos el onjeto files de arriba
             }
         },
-        sass : {outputStyle: 'compressed'}
-
+        sass : {outputStyle: 'compressed'},//micodigo scss me entrega una hoja de estilos css minificada
+        es6 : { presets : ['@babel/preset-env']},
+        imagemin : {
+          progressive : true,//quiere las imagenes jpg progresivas
+          use : [pngquant()]},//uso el plugin de png quant para reducir mas la imagen
+        svgmin : { convertColors : false,//que respete los colores y los deje como estan
+                  removeAttrs : { attrs : ['fill']}}//que remueva atributos de relleno
       };
 
 gulp.task('pug', () => {
@@ -66,4 +71,34 @@ gulp.task('sass', () => {
   gulp.src(`${dir.src}/scss/*.scss`)
       .pipe(sass(opts.sass))
       .pipe(gulp.dest(`${dir.dist}/css`));
+})
+gulp.task('es6', () => {
+  gulp.src(`${dir.src}/es6/*.js`)
+      .pipe(babel(opts.es6))
+      .pipe(gulp.dest(`${dir.dist}/js`));
+})
+gulp.task('img', () => {//tarea que optimiza imagenes
+  gulp.src(`${dir.src}/img/**/*.+(png|jpeg|jpg|gif)`)//** -> busque en cualquier carpeta, * ->cualquier nombre
+      .pipe(imagemin(opts.imagemin))//paso el plugin
+      .pipe(gulp.dest(`${dir.dist}/img`));
+})
+gulp.task('svg', () => {//tarea que optimiza vectores
+  gulp.src(`${dir.src}/img/svg/*.svg`)
+      .pipe(svgmin(opts.svgmin))//paso el plugin
+      .pipe(gulp.dest(`${dir.dist}/img/svg`));
+})
+gulp.task('webp', () => {//tarea que cambia el formato de las imagenes a webp
+  gulp.src(`${dir.src}/img/**/*.+(png|jpeg|jpg)`)//las imagenes en webp no pierden calidad y son menos pesadas
+      .pipe(webp())//no necesita parametros a menos de que queramos mas calidad
+      .pipe(gulp.dest(`${dir.dist}/img/webp`));
+})
+
+gulp.task('fonts', () => {//tarea que busca las tipos de letras y lo envie a la carpta dist
+  gulp.src(files.fonts)
+      .pipe(gulp.dest(`${dir.dist}/fonts`));
+})
+gulp.task('statics', () => {//tarea que cambia el formato de las imagenes a webp
+  gulp.src(files.statics)//las imagenes en webp no pierden calidad y son menos pesadas
+      .pipe(webp())//no necesita parametros a menos de que queramos mas calidad
+      .pipe(gulp.dest(dir.dist));
 })

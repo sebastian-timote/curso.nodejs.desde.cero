@@ -1,13 +1,40 @@
+mixin menu(url,name)
+    //-#[] ->para poner sentencia en la misma linea sin tener que identarla
+    //-${} -> impresion de variables EC6 
+    //-#{} -> impresion de variables pug
+    li #[a(href=`${url}`) #{name}]
+mixin pic(name, ext)
+    picture
+        //-si el navegador soporta imagenes webp
+        source(srcset=`img/webp/${name}.webp`, type="image/webp")
+        //-sino es compatible dejara la extension del archivo
+        img(src=`img/${name}.${ext}`)
 doctype html
 html(lang="es")
     head
         meta(charset="utf-8")
         meta(name="viewport", content="width=device-width,initial-scale=1")
         title= title
+        link(rel="shortcut icon", type="image/png", href="img/favicon.png")
         each css in files.CSS
             link(rel="stylesheet", href=`../${css}`)
+        //-comentario jade o pug
+        //comentario html
     body
-        h1= title
-        a(href="https://ed.team", target="_blank") escuela digital
+        //-estas son clases de la libreria responsimple
+        header.container-full.header.center
+            nav.container.nav
+                ul.item
+                    +menu('#maraton', 'Maraton')
+                    +menu('#mito', 'Mito')
+                    +menu('#olimpico', 'Olimpico')
+                    li
+                        +pic('favicon', 'png')
+                    +menu('#mayores', 'Mayores')
+                    +menu('#top-tem', 'Top Ten')
+                    +menu('#inspirate', 'Inspirate')
+
+                    
+
         each js in files.JS
             script(src=`../${js}`)
