@@ -9,6 +9,9 @@ mixin pic(name, ext)
         source(srcset=`img/webp/${name}.webp`, type="image/webp")
         //-sino es compatible dejara la extension del archivo
         img(src=`img/${name}.${ext}`)
+mixin youtube(id)
+    iframe.youtube(src=`https://www.youtube.com/embed/${id}`, frameborder="0", allowfullscreen)
+
 doctype html
 html(lang="es")
     head
@@ -16,8 +19,10 @@ html(lang="es")
         meta(name="viewport", content="width=device-width,initial-scale=1")
         title= title
         link(rel="shortcut icon", type="image/png", href="img/favicon.png")
+        // build:css css/estilos.min.css
         each css in files.CSS
             link(rel="stylesheet", href=`../${css}`)
+        // endbuild
         //-comentario jade o pug
         //comentario html
     body
@@ -25,16 +30,139 @@ html(lang="es")
         header.container-full.header.center
             nav.container.nav
                 ul.item
-                    +menu('#maraton', 'Maraton')
-                    +menu('#mito', 'Mito')
-                    +menu('#olimpico', 'Olimpico')
+                    +menu('#intro', 'Intro')
+                    +menu('#actualidad', 'Actualidad')
+                    +menu('#familia', 'Familia')
                     li
                         +pic('favicon', 'png')
-                    +menu('#mayores', 'Mayores')
-                    +menu('#top-tem', 'Top Ten')
+                    +menu('#logros', 'Logros')
+                    +menu('#top-ten', 'Top Ten')
                     +menu('#inspirate', 'Inspirate')
+        section#intro.container.section
+            h1.title.center.animated.wow.zoomIn= title
+            article.item.ph12.lg8.mauto.animated.wow.fadeInRightBig
+                p (Michael Jeffrey Jordan; Nueva York, 1963) Jugador de baloncesto norteamericano 
+                |considerado el mejor de la historia de este deporte. Ciertamente, desde que a finales 
+                |del siglo XIX un profesor de gimnasia estadounidense llamado 
+                |#[a(href="https://es.wikipedia.org/wiki/James_Naismith", target="_blank") James Naismith] 
+                |inventó el baloncesto hasta la década de 1980, nunca se vio un prodigio comparable al de 
+                |este legendario baloncestista. 
+                p Con sus 1,98 metros de altura, Michael Jordan fue un tenaz defensor, un excelente anotador 
+                |y un pasador rápido e imaginativo; pero mucho más llamativa era aún su extraordinaria 
+                |habilidad para saltar y las acrobáticas maniobras que utilizaba para esquivar la defensa 
+                |rival y llegar a la canasta. Parecía capaz de permanecer por unos instantes suspendido en 
+                |el aire; tal facultad o «don del cielo» -nunca mejor dicho- le valió el sobrenombre de <b>Air 
+                |Jordan</b>.
+                +pic('jordan-michael-intro', 'jpg')
 
-                    
+        section#actualidad.container.section
+            h2.title.center.animated.wow.zoomIn= "Actualidad"
+            article.item.ph12.lg8.mauto.animated.wow.fadeInLeftBig
+                p <b>Michael Jeffrey Jordan</b> (Nueva York; 17 de febrero de 1963) es un exjugador de baloncesto estadounidense. 
+                |En la actualidad es propietario del equipo de la NBA los Charlotte Hornets. Es considerado por la mayoría 
+                |de aficionados y especialistas como el mejor jugador de baloncesto de todos los tiempos. Se retiró definitivamente 
+                |en 2003 en los Washington Wizards, tras haberlo hecho en dos ocasiones anteriores, en 1993 y 1999, después de haber 
+                |jugado 13 temporadas en los Chicago Bulls.
+                p Ganó seis anillos con Chicago Bulls, promediando 30,1 puntos por partido en toda su carrera deportiva, el mayor 
+                |promedio en la historia de la liga. También ganó 10 títulos de máximo anotador, 5 MVP de la temporada, 6 MVP de las 
+                |Finales; fue nombrado en el mejor quinteto de la NBA en diez ocasiones, en el defensivo nueve veces, líder en robos de 
+                |balón durante tres años y un premio al mejor defensor de la temporada.
+                +pic('michael-jordan-2014', 'jpg')
 
+        section#familia.container.section
+            h1.title.center.animated.wow.zoomIn= "Familia"
+            article.item.ph12.lg8.mauto.animated.wow.fadeInRightBig
+                p Jordan es el cuarto de cinco hijos. Tiene dos hermanos mayores, Larry y James, y dos hermanas, una mayor (Delores) y 
+                |otra pequeña (Roslyn). Su hermano mayor James fue sargento mayor de la 35ta Signal Brigade del XXVII Cuerpo 
+                |Aerotransportado del Ejército de los Estados Unidos.En septiembre de 1989 se casó con Juanita Vanoy, con quien tuvo dos 
+                |hijos, Jeffrey Michael y Marcus James, y una hija, Jasmine. Michael y Juanita informaron el 4 de enero de 2002 de su 
+                |divorcio debido a diferencias insostenibles, aunque posteriormente se reconciliaron.
+                p El 21 de julio de 2006, un juzgado de Cook County, Illinois, determinó que Jordan no debía pagar a Karla Knafel, una 
+                |antigua amante, 5 millones de dólares.69​ Knafel demandó que esa era la cantidad acordada con Jordan para permanecer 
+                |callada y no presentar una prueba de paternidad después de que Knafel quedara embarazada en 1991. Una prueba de ADN 
+                |demostró que Jordan no era el padre del niño. El abogado de Knafel, Michael Hannafan, dijo que su cliente apelaría hasta 
+                |la última instancia.
+                p Jordan residió en Highland Park, Illinois, y sus dos hijos varones asistieron a Loyola Academy, un instituto privado 
+                |católico de Wilmette, Illinois, donde además empezaron a despuntar jugando a baloncesto.Finalmente, el 29 de diciembre de 
+                |2006 presentaron su divorcio de manera "mutua y cordial".Jeffrey, su hijo mayor, jugó al baloncesto en la Universidad de 
+                |Illinois, mientras que Marcus lo hizo en la Universidad de Florida Central. Por su parte Jasmine estudió administración 
+                |deportiva en la Universidad de Syracuse, y se hizo representante de campo de la marca Nike Jordan.
+                p En agosto de 2013, Jordan de 50 años, se casa con Yvette Prieto de 34 en Palm Beach (Florida) tras un largo noviazgo. 
+                |En febrero de 2014 darían a luz a las gemelas Victoria e Ysabel.72​ En ese momento, los otros tres hijos de Michael tenían 
+                |25, 22 y 21 respectivamente.
+                +pic('jordan-family','jpg')
+        section#logros.container.section
+            h2.title.center.animated.wow.zoomIn= "Premios, records y logros"
+            article.item.ph12.lg8.mauto.animated.wow.fadeInLeftBig
+                h2 #[i.fa.fa-trophy] 6 veces campeon de la NBA #[i.fa.fa-trophy]
+                div
+                    +pic('michael-jordan-1991', 'jpg')
+                    p Final 1991
+                div
+                    +pic('michael-jordan-1992', 'png')
+                    p Final 1992
+                div
+                    +pic('michael-jordan-1993', 'jpg')
+                    p Final 1993
+                div
+                    +pic('michael-jordan-1996', 'jpg')
+                    p Final 1996
+                div
+                    +pic('michael-jordan-1997', 'jpg')
+                    p Final 1997
+                div
+                    +pic('michael-jordan-1998', 'jpg')
+                    p Final 1998
+        section#top-ten.container.section
+            h1.title.center.animated.wow.zoomIn #[i.fa.fa-trophy] Top 10 mejores jugadores de la NBA #[i.fa.fa-trophy]
+            article.item.ph12.lg8.mauto.animated.wow.fadeInRightBig
+                h3.center #[i.fas.fa-basketball-ball] Michael Jefrey Jordan
+                +pic('jordan', 'jpg')
+                h3.center #[i.fas.fa-basketball-ball] James Lebron
+                +pic('lebron', 'jpg')
+                h3.center #[i.fas.fa-basketball-ball] Kareem Abdul-Jabbar
+                +pic('abdul-jabbar', 'jpg')
+                h3.center #[i.fas.fa-basketball-ball] Bill Russell
+                +pic('russell', 'jpg')
+                h3.center #[i.fas.fa-basketball-ball] 'Magic' Johnson
+                +pic('johnson', 'jpeg')
+                h3.center #[i.fas.fa-basketball-ball] Wilt Chamberlain
+                +pic('chamberlain', 'jpg')
+                h3.center #[i.fas.fa-basketball-ball] Larry Bird
+                +pic('bird', 'jpg')
+                h3.center #[i.fas.fa-basketball-ball] Tim Duncan
+                +pic('duncan', 'jpg')
+                h3.center #[i.fas.fa-basketball-ball] Kobe Bryant
+                +pic('bryant', 'jpg')
+                h3.center #[i.fas.fa-basketball-ball] Shaquille O'Neal
+                +pic('oneal', 'jpg')
+        
+        section#inspirate.container.section
+            h1.title.center.animated.wow.zoomIn #[i.fab.fa-gripfire] Inspirate #[i.fab.fa-gripfire]
+            article.item.ph12.lg8.mauto.animated.wow.fadeInRightBig.twoColumn
+                h3.center Jordan
+                +youtube('8FwgVZdCpGk')
+                h3.center lebron
+                +youtube('AqspfYQ-pN8')
+                h3.center Abdul-Jabbar
+                +youtube('133YwacaFPQ')
+                h3.center Russell
+                +youtube('mVKjdCQLVG8')
+                h3.center Johnson
+                +youtube('M97-QrqHBw8')
+                h3.center Chamberlain
+                +youtube('NRgFX3-rc2w')
+                h3.center Bird
+                +youtube('YW2sP1f-4hk')
+                h3.center Duncan
+                +youtube('OL1sORY3Kh4')
+                h3.center Bryant
+                +youtube('T06yJR-Xzd4')
+                h3.center O'Neal
+                +youtube('ZTk0fwsJ6qo')
+
+        script(src="https://kit.fontawesome.com/d209265e3d.js" crossorigin="anonymous")
+        // build:js js/codigos.min.js
         each js in files.JS
             script(src=`../${js}`)
+        //endbuild

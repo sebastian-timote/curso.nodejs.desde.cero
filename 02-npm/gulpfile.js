@@ -9,7 +9,8 @@ const gulp = require('gulp'),
       webp = require('gulp-webp'),
       useref = require('gulp-useref'),
       concat = require('gulp-concat'),
-      uncss = require('gulp-uncss'),
+      uncss = require('gulp-uncss'),//este plugin ya esta deprecated lo reemplazo purgecss
+      purgecss = require('gulp-purgecss'),
       autoprefixer = require('gulp-autoprefixer'),
       cleanCSS = require('gulp-clean-css'),
       uglify = require('gulp-uglify'),
@@ -32,7 +33,7 @@ const gulp = require('gulp'),
           JS : [
             `${dir.nm}/jquery/dist/jquery.min.js`,
             `${dir.nm}/owl.carousel/dist/owl.carousel.min.js`,
-            `${dir.nm}/dist/wow.min.js`,
+            `${dir.nm}/wowjs/dist/wow.min.js`,
             `${dir.dist}/js/codigos.js`
           ],
           mJS : 'codigos.min.js',
@@ -48,7 +49,7 @@ const gulp = require('gulp'),
         pug: {
             pretty : true,//true es para que no minifique el codigo html
             locals : {//con locals enviamos variables al aplantilla de pug
-                title : 'Maraton',
+                title : 'Michael Jordan',
                 files : files//le mandamos el onjeto files de arriba
             }
         },
@@ -58,7 +59,14 @@ const gulp = require('gulp'),
           progressive : true,//quiere las imagenes jpg progresivas
           use : [pngquant()]},//uso el plugin de png quant para reducir mas la imagen
         svgmin : { convertColors : false,//que respete los colores y los deje como estan
-                  removeAttrs : { attrs : ['fill']}}//que remueva atributos de relleno
+                  removeAttrs : { attrs : ['fill']}},//que remueva atributos de relleno
+        uncss : { html : [`${dir.dist}/*.html`]},//ruta en la cual va a buscar
+        autoprefixer : {
+          browsers : ['last 5 versions'],//hasta cuantas versiones va a soportar 
+          cascade : false
+        },
+        htmlmin : {collapseWhitespace : true},//no considerar espacios en blanco
+        purgecss : { content : [`${dir.dist}/*.html`]}//ruta en la cual va a buscar
       };
 
 gulp.task('pug', () => {
@@ -97,8 +105,27 @@ gulp.task('fonts', () => {//tarea que busca las tipos de letras y lo envie a la 
   gulp.src(files.fonts)
       .pipe(gulp.dest(`${dir.dist}/fonts`));
 })
-gulp.task('statics', () => {//tarea que cambia el formato de las imagenes a webp
-  gulp.src(files.statics)//las imagenes en webp no pierden calidad y son menos pesadas
-      .pipe(webp())//no necesita parametros a menos de que queramos mas calidad
+gulp.task('statics', () => {//manda los archivos statics a dist
+  gulp.src(files.statics)
       .pipe(gulp.dest(dir.dist));
 })
+
+gulp.task('css', () => {//tarea que minifica todos los archivos y lo combierte en uno solo
+  gulp.src(files.CSS)//lee todos los archivos
+      .pipe(concat(files.mCSS))//concatena todos los archivos y lo comvierte en uno solo
+      .pipe(uncss(opts.purgecss))//busca los selectores css que son usados por el proyecto y los que no se usen los borra
+      .pipe(autoprefixer(opts.autoprefixer))//ayuda a los navegadores con los prefixer
+      .pipe(cleanCSS())//aplica el archivo que concatenamos
+      .pipe(gulp.dest(`${dir.dist}/css`));
+})
+gulp.task('js', () => {
+  gulp.src(files.JS)//lee todos los archivos
+  .pipe(concat(files.mJS))//los concatena en uno solo y el nombre del archivo esta en el objeto
+  .pipe(uglify())//lo  hace poco entendible y luego lo va a minificar
+  .pipe(gulp.dest(`${dir.dist}/js`));
+});
+gulp.task('html', () => {
+  gulp.src(`${dir.dist}/*.html`)//lee todos los archivos
+  .pipe(useref())//hacemos un comentario en el html para que me convierta todos esos links por el archivo minificado o concatenado
+  .pipe(gulp.dest(`${dir.dist}`));
+});
