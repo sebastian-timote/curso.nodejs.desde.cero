@@ -1,0 +1,17 @@
+<div>
+    <h1 class="title">Subscribe to timo blog</h1>
+    <h2 class="subtitle">get weekly updates, course discounts, and more</h2>
+
+    <form method="post" action="{{action}}">
+        {{hidden}}
+        <div class="field is-grouped {{#if error}} error {{/if}}">
+            {{input_email class="input"
+            placeholder="you@email.com" value=email autofocus=autofocus}}
+        </div>
+        <button class="button is-primary" type="submit">Subscribe</button>
+        {{script}}
+    </form>
+    {{#if error}}
+        <p>{{{error.message}}}</p>
+    {{/if}}
+</div>

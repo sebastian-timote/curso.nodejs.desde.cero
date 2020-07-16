@@ -1,0 +1,14 @@
+{
+  "name": "basicos-express",
+  "version": "1.0.0",
+  "description": "ejemplos basicos con el microframework Express",
+  "main": "00-hello-express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sebastian timote",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

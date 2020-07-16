@@ -1,0 +1,3 @@
+https://github.com/creationix/nvm
+https://github.com/coreybutler/nvm-windows
+contraseña sugerida de ghost      gM6AFYx4H.$Qz9K

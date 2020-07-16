@@ -1,0 +1,18 @@
+{{!< default}}
+
+<main class="container">
+    <div class="columns is-multiline">
+        {{#foreach posts}}
+            {{!-- <h1><a href="{{url}}">{{title}}</a></h1> --}}
+            <div class="column is-half is-centered">
+                {{> post_card}}
+            </div>
+
+        {{/foreach}}
+    </div>
+
+</main>
+<!-- pagination block -->
+<div class="container">
+    {{pagination}}
+</div>

@@ -1,0 +1,20 @@
+{
+  "name": "timo",
+  "version": "0.0.1",
+  "description": "a theme for michaeljordanlegend.io",
+  "main": "index.js",
+  "engines": {
+    "ghost": ">=1.0.0"
+  },
+  "config": {
+    "posts per page": 3
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "sebastian timote",
+    "email": "stimotev11@gmail.com"
+  },
+  "license": "ISC"
+}
