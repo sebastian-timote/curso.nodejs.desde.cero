@@ -1,5 +1,4 @@
 'use strict';//esquema de la collection 
-//es un mapeo de la coleccion indentation_war es un ODM
 const mongoose = require('./model'),
       Schema = mongoose.Schema,
       TeamSchema = new Schema({
