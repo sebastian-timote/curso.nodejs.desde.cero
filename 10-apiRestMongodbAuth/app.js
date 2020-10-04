@@ -22,11 +22,12 @@ const express = require('express'),
 
 let app = express();
 /* USO DE LOS MIDDLEWARE*/
-
+//set -> establesco parametros
 app.set('views', viewDir)
     .set('view engine', 'pug')
     .set('port', port)
-
+//use -> establesco los middlewares
+//get -> obtener caracteristica de la aplicacion
     .use(session(optSession))
     .use(bodyParser.json())//me permite manipular el envio de informacion de la  en json
     .use( bodyParser.urlencoded({ extended: false}))//nos permite que los form puedan estar enviando variables
