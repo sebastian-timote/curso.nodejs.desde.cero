@@ -64,6 +64,6 @@
     "imagemin-pngquant": "^9.0.0",
     "onchange": "^7.0.2",
     "parallelshell": "^3.0.2",
-    "pug": "^3.0.0"
+    "pug": "^3.0.1"
   }
 }
